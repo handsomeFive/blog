@@ -1,40 +1,22 @@
 import React, {Component} from 'react';
 import {Router, Switch, Route} from 'react-router'
-import {Button, Layout} from 'antd'
 import {createBrowserHistory} from 'history'
+import DefaultLayout from "./routes/DefaultLayout";
+import NotFound from "./routes/NotFound";
 
-const {Sider, Header, Content} = Layout
+
 const browserHistory = createBrowserHistory()
 
 class App extends Component {
-
-
-    renderSider() {
-        return <Sider></Sider>
-    }
-
-    renderHeader() {
-        return <Header>
-            <Button>233</Button>
-        </Header>
-    }
-
-    renderContent() {
-        return <Router history={browserHistory}>
-            <Switch>
-                <Route></Route>
-            </Switch>
-        </Router>
-    }
-
     render() {
-        return <Layout className='height1'>
-            {this.renderSider()}
-            <Layout>
-                {this.renderHeader()}
-                {this.renderContent()}
-            </Layout>
-        </Layout>
+        return <Router history={browserHistory}>
+                <Switch>
+                    <Switch>
+                        <Route exact component={DefaultLayout}/>
+                        <Route path='/notFound' component={NotFound}/>
+                    </Switch>
+                </Switch>
+        </Router>
     }
 }
 
