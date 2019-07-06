@@ -4,6 +4,7 @@
   "private": true,
   "dependencies": {
     "antd": "^3.19.7",
+    "codeflask": "^1.4.1",
     "normalize.css": "^8.0.1",
     "react": "^16.8.4",
     "react-dom": "^16.8.4",
@@ -31,6 +32,7 @@
     "customize-cra": "^0.2.13",
     "less": "^3.9.0",
     "less-loader": "^5.0.0",
+    "node-sass": "^4.12.0",
     "react-app-rewired": "^2.1.3"
   }
 }
