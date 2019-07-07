@@ -1,10 +1,12 @@
 {
   "name": "blog",
   "version": "0.1.0",
+  "homepage": "https://github.com/handsomeFive/blog",
   "private": true,
   "dependencies": {
     "antd": "^3.19.7",
     "codeflask": "^1.4.1",
+    "gh-pages": "^2.0.1",
     "normalize.css": "^8.0.1",
     "react": "^16.8.4",
     "react-dom": "^16.8.4",
@@ -16,7 +18,9 @@
     "start": "react-app-rewired start",
     "build": "react-app-rewired build",
     "test": "react-app-rewired test",
-    "eject": "react-app-rewired eject"
+    "eject": "react-app-rewired eject",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build"
   },
   "eslintConfig": {
     "extends": "react-app"
