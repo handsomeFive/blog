@@ -211,7 +211,9 @@ export default class WebsocketUsecase extends React.PureComponent {
 
 
     render () {
-        return <Article>
+        const { height } = this.props
+
+        return <Article style={ { height, overflow: 'auto' } }>
             <Typography>
                 <Title level={ 2 }>websocket项目初级方案沉淀</Title>
                 { this.renderParagraph1() }
