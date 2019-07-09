@@ -5,7 +5,7 @@ import { Layout, Menu, Icon } from 'antd'
 import { menu, routeConfig } from '../../../src/constants/routes'
 import { V_LAYOUT_HEADER_HEIGHT, V_LAYOUT_SIDER_SMALL_WIDTH, V_LAYOUT_SIDER_WIDTH } from "../../constants/global";
 import { WHITE } from "../../constants/color";
-
+import { CustomIcon } from '../../component/CustomIcon/index'
 
 const { SubMenu, Item } = Menu
 const { Sider, Header } = Layout
@@ -30,10 +30,12 @@ class App extends Component {
 
     handleCollapseSider = () => this.setState({ isCollapse: !this.state.isCollapse })
 
-    renderMenuNode = ( list ) => list.map(( { children, title, path } ) => {
+    renderMenuNode = ( list ) => list.map(( { children, title, icon, path } ) => {
         if (children) {
             return <SubMenu key={ title }
-                            title={ title }>{ this.renderMenuNode(children) }</SubMenu>
+                            title={ <span><CustomIcon type={ icon }/><span>{ title }</span></span> }>
+                { this.renderMenuNode(children) }
+            </SubMenu>
         }
         return <Item key={ path }>
             <Link to={ { pathname: path } }>{ title }</Link>
@@ -42,26 +44,35 @@ class App extends Component {
 
 
     renderSider () {
-        const logoStyle = { height: V_LAYOUT_HEADER_HEIGHT }
+        const logoStyle = {
+            height: V_LAYOUT_HEADER_HEIGHT,
+            lineHeight: V_LAYOUT_HEADER_HEIGHT + "px",
+            padding: '0 12px'
+        }
+        const iconStyle = { float: 'right' }
         const { isCollapse } = this.state
         const width = isCollapse ? V_LAYOUT_SIDER_SMALL_WIDTH : V_LAYOUT_SIDER_WIDTH
+        const iconType = this.state.isCollapse ? 'menu-unfold' : 'menu-fold'
 
         return <Sider width={ width } collapsed={ isCollapse } style={ { minWidth: 0 } }>
             <Menu mode='inline'
                   theme='dark'>
-                <div style={ logoStyle }/>
+                <div style={ logoStyle }>
+                    <Icon style={ iconStyle } type={ iconType } onClick={ this.handleCollapseSider }/>
+                </div>
                 { this.renderMenuNode(menu) }
             </Menu>
         </Sider>
     }
 
     renderHeader () {
-        const headerStyle = { height: V_LAYOUT_HEADER_HEIGHT, backgroundColor: WHITE }
-        const iconType = this.state.isCollapse ? 'menu-fold' : 'menu-unfold'
+        const headerStyle = {
+            height: V_LAYOUT_HEADER_HEIGHT,
+            lineHeight: V_LAYOUT_HEADER_HEIGHT + 'px',
+            backgroundColor: WHITE
+        }
 
-        return <Header style={ headerStyle }>
-            <Icon type={ iconType } onClick={ this.handleCollapseSider }/>
-        </Header>
+        return <Header style={ headerStyle }/>
     }
 
     renderContent () {
