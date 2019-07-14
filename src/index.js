@@ -5,6 +5,7 @@ import * as serviceWorker from './serviceWorker';
 import 'normalize.css'
 import './assets/css/property.css'
 import './assets/css/basic.css'
+import 'animate.css'
 
 ReactDOM.render(<App/>, document.getElementById('root'));
 

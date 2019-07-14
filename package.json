@@ -4,6 +4,7 @@
   "homepage": "https://github.com/handsomeFive/blog",
   "private": true,
   "dependencies": {
+    "animate.css": "^3.7.2",
     "antd": "^3.19.7",
     "codeflask": "^1.4.1",
     "gh-pages": "^2.0.1",
