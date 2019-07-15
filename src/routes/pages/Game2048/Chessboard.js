@@ -24,9 +24,14 @@ export default class Chessboard extends React.PureComponent {
     }
 
     handleKeyPress = ( event ) => {
-        this.chessStore.move(event.keyCode)
-        const chessList=this.chessStore.list.slice()
-        this.setState({ chessList })
+        console.log(this.chessStore.check())
+        if (this.chessStore.check()) {
+            this.chessStore.move(event.keyCode)
+            const chessList = this.chessStore.list.slice()
+            this.setState({ chessList })
+        } else {
+            alert('你不能再移动了')
+        }
     }
 
     render ()

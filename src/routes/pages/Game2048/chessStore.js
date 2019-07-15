@@ -100,4 +100,17 @@ export class ChessStore {
                 break;
         }
     }
+
+    check ()
+    {
+        if (this.list.length < this.axisY * this.axisX) {
+            return true
+        } else {
+            return this.list.some(item => { //
+                const { x, y, value } = item
+                return !!this.list.filter(data => ((data.y === y && data.x === x + 1) || (data.x === x && data.y === y + 1)) && value === data.value).length
+            })
+        }
+    }
+
 }
