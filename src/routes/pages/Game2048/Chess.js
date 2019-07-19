@@ -50,7 +50,8 @@ export default class Chess extends React.PureComponent {
             textAlign      : 'center',
             lineHeight     : bound - 20 + 'px',
             backgroundColor: bgColor,
-            transition     : 'all 0.3s'
+            transition     : 'all 0.3s',
+            zIndex         : value ? 1 : 0
         }
 
         return <div style={ style } className={ animateClass }>

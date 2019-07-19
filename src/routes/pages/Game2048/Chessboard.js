@@ -24,7 +24,6 @@ export default class Chessboard extends React.PureComponent {
     }
 
     handleKeyPress = ( event ) => {
-        console.log(this.chessStore.check())
         if (this.chessStore.check()) {
             this.chessStore.move(event.keyCode)
             const chessList = this.chessStore.list.slice()
@@ -38,6 +37,7 @@ export default class Chessboard extends React.PureComponent {
     {
         const { chessList } = this.state
         const boardStyle = {
+            overflow  : 'hidden',
             background: '#bcaea1',
             width     : Bound * SIZE,
             height    : Bound * SIZE,

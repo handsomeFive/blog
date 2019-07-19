@@ -43,11 +43,12 @@ export class ChessStore {
     _mergeSameValue ( axis, reverse )
     {
         const emunAxis = { 'x': this.axisX, 'y': this.axisY }
-        const copy = this.list.slice()
+        const copy = this.list.slice().filter(item=> !!item.value)
+        const aimAry = copy.slice()
         const relativeAxis = axis === 'x' ? 'y' : 'x' //相对坐标
         let isChange = false
         for ( let i = 0; i < emunAxis[relativeAxis]; i++ ) {
-            const rowAry = this.list.filter(item => item[relativeAxis] === i).sort(( a, b ) => (a[axis] - b[axis]) * (reverse ? -1 : 1))
+            const rowAry = aimAry.filter(item => item[relativeAxis] === i).sort(( a, b ) => (a[axis] - b[axis]) * (reverse ? -1 : 1))
             const mergeAry = []
             if (rowAry.length) {
                 rowAry.forEach(( item, index ) => {
@@ -68,10 +69,16 @@ export class ChessStore {
                         isChange = true
                     }
                 })
-                rowAry.filter(item => !item.value).forEach(( { label } ) => {
-                    const currentIndex = copy.findIndex(copyItem => copyItem.label === label)
-                    copy.splice(currentIndex, 1)
-                    isChange = true
+                rowAry.filter(item => !item.value).forEach((mergedItem) => {
+                    const currentIndex = copy.findIndex(copyItem => copyItem.label === mergedItem.label)
+                    const ary = copy.filter(item=>{
+                      const jud = reverse? mergedItem[axis] < item[axis] : mergedItem[axis] > item[axis]
+                      return jud && item.value
+                    })
+                    if (ary.length) {
+                      copy[currentIndex][axis] = ary[ary.length-1][axis]
+                      isChange = true
+                    }
                 })
             }
         }
