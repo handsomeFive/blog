@@ -21,22 +21,21 @@ const COLOR_ENUM = { //棋子颜色
 export default class Chess extends React.PureComponent {
 
 
-    state = { animateClass: 'animated pulse' }
+    state = { animateClass: 'zoomIn' }
 
-    componentDidMount ()
-    {
-        // this.setState({ animateClass: '' })
-    }
 
-    componentDidUpdate ( prevProps, prevState, snapshot )
+    componentDidUpdate ( prevProps, nextState, snapshot )
     {
-        if (this.props.value !== prevProps.value) { //
-            this.setState({ animateClass: 'animated pulse' })
+        if (this.props.double !== prevProps.double) { //
+            this.setState({ animateClass: this.props.double ? 'pulse' : '' })
+        } else {
+            // this.setState({ animateClass: '' })
         }
     }
 
     render ()
     {
+
         const { value, bound, x, y } = this.props
         const { animateClass } = this.state
         const bgColor = COLOR_ENUM[value] || '#ccc0b4'
@@ -53,8 +52,8 @@ export default class Chess extends React.PureComponent {
             transition     : 'all 0.3s',
             zIndex         : value ? 1 : 0
         }
-
-        return <div style={ style } className={ animateClass }>
+        console.log(animateClass)
+        return <div style={ style } className={ 'animated ' + animateClass }>
             { value }
         </div>
     }

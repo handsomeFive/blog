@@ -8,6 +8,7 @@ export class ChessStore {
         this.axisX = props.x
         this.axisY = props.y
         this.list = []
+        this.score = 0
         this._addRandomValue()
         this._addRandomValue()
     }
@@ -19,7 +20,8 @@ export class ChessStore {
 
     _addRandomValue ()
     {
-        const value = Math.floor(Math.random() * 10) > 5 ? 2 : 4 // the random value : 2 or 4
+        // const value = Math.floor(Math.random() * 10) > 5 ? 2 : 4 // the random value : 2 or 4
+        const value = 2
         const canAddAry = []
         for ( let x = 0; x < this.axisX; x++ ) {
             for ( let y = 0; y < this.axisY; y++ ) {
@@ -30,7 +32,7 @@ export class ChessStore {
         }
         if (canAddAry.length) {
             const label = Math.floor(Math.random() * canAddAry.length)
-            this.list.push({ ...canAddAry[label], value, label: this._count })
+            this.list.push({ ...canAddAry[label], value, label: this._count, merge: false })
             this._count++
         }
     }
@@ -43,7 +45,9 @@ export class ChessStore {
     _mergeSameValue ( axis, reverse )
     {
         const emunAxis = { 'x': this.axisX, 'y': this.axisY }
-        const copy = this.list.slice().filter(item=> !!item.value)
+        const copy = this.list.slice().filter(item => !!item.value).map(item => {
+            return { ...item, double: false, }
+        })
         const aimAry = copy.slice()
         const relativeAxis = axis === 'x' ? 'y' : 'x' //相对坐标
         let isChange = false
@@ -58,7 +62,9 @@ export class ChessStore {
                 })
                 mergeAry.forEach(label => {
                     rowAry[label].value = 2 * rowAry[label].value
+                    rowAry[label].double = true
                     rowAry[label + 1].value = 0
+                    this.score = ( rowAry[label].value) + this.score
                 })
                 rowAry.filter(item => item.value).forEach(( { label, value }, index ) => {
                     const currentIndex = copy.findIndex(copyItem => copyItem.label === label)
@@ -69,15 +75,15 @@ export class ChessStore {
                         isChange = true
                     }
                 })
-                rowAry.filter(item => !item.value).forEach((mergedItem) => {
+                rowAry.filter(item => !item.value).forEach(( mergedItem ) => {
                     const currentIndex = copy.findIndex(copyItem => copyItem.label === mergedItem.label)
-                    const ary = copy.filter(item=>{
-                      const jud = reverse? mergedItem[axis] < item[axis] : mergedItem[axis] > item[axis]
-                      return jud && item.value
+                    const ary = copy.filter(item => {
+                        const jud = reverse ? mergedItem[axis] < item[axis] : mergedItem[axis] > item[axis]
+                        return jud && item.value && mergedItem[relativeAxis] === item[relativeAxis] && item.double
                     })
                     if (ary.length) {
-                      copy[currentIndex][axis] = ary[ary.length-1][axis]
-                      isChange = true
+                        copy[currentIndex][axis] = ary[ary.length - 1][axis]
+                        isChange = true
                     }
                 })
             }
@@ -110,7 +116,7 @@ export class ChessStore {
 
     check ()
     {
-        if (this.list.length < this.axisY * this.axisX) {
+        if (this.list.filter(item => !!item.value).length < this.axisY * this.axisX) {
             return true
         } else {
             return this.list.some(item => { //
@@ -118,6 +124,15 @@ export class ChessStore {
                 return !!this.list.filter(data => ((data.y === y && data.x === x + 1) || (data.x === x && data.y === y + 1)) && value === data.value).length
             })
         }
+    }
+
+    restart ()
+    {
+        this._count = 0
+        this.score = 0
+        this.list = []
+        this._addRandomValue()
+        this._addRandomValue()
     }
 
 }
