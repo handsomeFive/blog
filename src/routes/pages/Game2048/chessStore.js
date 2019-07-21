@@ -46,7 +46,7 @@ export class ChessStore {
     {
         const emunAxis = { 'x': this.axisX, 'y': this.axisY }
         const copy = this.list.slice().filter(item => !!item.value).map(item => {
-            return { ...item, double: false, }
+            return { ...item, double: false, }c
         })
         const aimAry = copy.slice()
         const relativeAxis = axis === 'x' ? 'y' : 'x' //相对坐标

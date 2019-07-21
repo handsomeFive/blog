@@ -28,8 +28,8 @@ export default class ScoreBoard extends React.PureComponent {
             <span style={ { color: '#eee4da' } }>SCORE:</span>
             <br/>
             <span style={ { color: '#fff', fontSize: 24, } }>{ score }</span>
-            <span className={ 'animated fadeoutUp' }
-                  style={ { position: 'absolute' } }>{ '+' + dis }</span>
+            {/*<span className={ 'animated fadeoutUp' }*/}
+            {/*      style={ { position: 'absolute' } }>{ '+' + dis }</span>*/}
         </div>
     }
 }
