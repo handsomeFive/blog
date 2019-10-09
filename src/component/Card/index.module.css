@@ -1,0 +1,37 @@
+.card {
+    cursor: pointer;
+    background-color: #FFF;
+    border-radius: 10px;
+    margin: 10px 0 20px 0;
+    overflow: hidden;
+    box-shadow: 2px 2px 10px #ccc;
+}
+
+.card:hover {
+    background: #f5f5f5;
+}
+
+.section {
+    width: 60%;
+    padding: 10px;
+    float: left;
+}
+
+.title {
+    color: #383838;
+    font-weight: 500
+}
+
+.detail {
+    word-break: break-all;
+    font-size: 12px
+}
+
+.date {
+    color: grey
+}
+
+.image {
+    float: left;
+    width: 40%
+}

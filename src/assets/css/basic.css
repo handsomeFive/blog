@@ -113,3 +113,27 @@ input::-webkit-input-placeholder { /* WebKit browsers */
 textarea::-webkit-input-placeholder { /* WebKit browsers */
     font-size: 12px;
 }
+
+.ellipsis {
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+}
+
+/* 全局滚动条样式 */
+
+::-webkit-scrollbar {
+    width: 12px;
+}
+::-webkit-scrollbar-thumb {
+    background-color: rgba(50, 50, 50, 0.3);
+}
+::-webkit-scrollbar-thumb:hover {
+    background-color: rgba(50, 50, 50, 0.6);
+}
+::-webkit-scrollbar-track {
+    background-color: rgba(50, 50, 50, 0.1);
+}
+::-webkit-scrollbar-track:hover {
+    background-color: rgba(50, 50, 50, 0.2);
+}

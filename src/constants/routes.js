@@ -1,26 +1,46 @@
-import Home from "../routes/pages/Home";
-import WebsocketUsecase from "../routes/pages/WebsocketUsecase";
-import Game2048 from '../routes/pages/Game2048'
+import Home from '../routes/pages/Home'
+import WebsocketUsecase from '../routes/pages/Blog/WebsocketUsecase'
+import Game2048 from '../routes/pages/Demo/Game2048'
+import Record from '../routes/pages/Blog/Record'
+import DemoList from '../routes/pages/Demo/DemoList'
+import BlogList from '../routes/pages/Blog/BlogList'
+import { ILLUSTRATION_WEBSOCKET, ILLUSTRATION_RECORD, ILLUSTRATION_2048 } from '../assets/img'
 
-export const menu = [
-    {
-        title: '技术总结',
-        icon: 'icon-Summary',
-        children: [
-            { title: 'websocket使用', path: '/summary/websocket' }
-        ]
-    },
-    {
-        title: 'Demo',
-        icon: 'icon-codeoptimization',
-        children: [
-            { title: '2048小游戏', path: '/demo/game2048' }
-        ]
-    }
-]
 export const routeConfig = [
-    { path: '/', text: '主页', component: Home, exact: true },
-    { path: '/home', text: '主页', component: Home, exact: true },
-    { path: '/summary/websocket', text: 'websocket使用', component: WebsocketUsecase, exact: true },
-    { path: '/demo/game2048', text: '2048小游戏', component: Game2048, exact: true },
+  {path: '/', text: '主页', component: Home, exact: true},
+  {path: '/home', text: '主页', component: Home, exact: true},
+
+  {path: '/blog', text: '博客列表', component: BlogList, exact: true, catalogue: 'blog'},
+  {path: '/blog/websocket', text: 'websocket使用', component: WebsocketUsecase, exact: true},
+  {path: '/blog/record', text: '采坑记录', component: Record, exact: true},
+
+  {path: '/demo', text: '演示列表', component: DemoList, exact: true, catalogue: 'demo'},
+  {path: '/demo/game2048', text: '2048小游戏', component: Game2048, exact: true},
+]
+
+export const routesList = [
+  {
+    catalogue: 'blog',
+    title: 'websocket的使用',
+    path: '/blog/websocket',
+    brief: 'WebSocket 是 HTML5 开始提供的一种在单个 TCP 连接上进行全双工通讯的协议。WebSocket 使得客户端和服务器之间的数据交换变得更加简单，允许服务端主动向客户端推送数据。在 WebSocket API 中，浏览器和服务器只需要完成一次握手... ',
+    date: ' 6 Jul , 2019',
+    imageSrc: ILLUSTRATION_WEBSOCKET
+  },
+  {
+    catalogue: 'blog',
+    title: 'React Native踩坑记录',
+    path: '/blog/record',
+    brief: '在react-native项目中发现的坑及解决办法。持续记录...',
+    date: '8 Oct, 2019',
+    imageSrc: ILLUSTRATION_RECORD
+  },
+  {
+    catalogue: 'demo',
+    title: '2048小游戏',
+    path: '/demo/game2048',
+    brief: '实现React下2048游戏的开发，使用一维数组来实现数据的合并计算等。',
+    date: '21 Jul, 2019',
+    imageSrc: ILLUSTRATION_2048
+  },
 ]
