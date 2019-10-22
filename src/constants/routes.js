@@ -4,7 +4,8 @@ import Game2048 from '../routes/pages/Demo/Game2048'
 import Record from '../routes/pages/Blog/Record'
 import DemoList from '../routes/pages/Demo/DemoList'
 import BlogList from '../routes/pages/Blog/BlogList'
-import { ILLUSTRATION_WEBSOCKET, ILLUSTRATION_RECORD, ILLUSTRATION_2048 } from '../assets/img'
+import Screenshot from '../routes/pages/Blog/Screenshot'
+import { ILLUSTRATION_WEBSOCKET, ILLUSTRATION_RECORD, ILLUSTRATION_2048, ILLUSTRATION_SCREEN_SHOT } from '../assets/img'
 
 export const routeConfig = [
   {path: '/', text: '主页', component: Home, exact: true},
@@ -13,6 +14,7 @@ export const routeConfig = [
   {path: '/blog', text: '博客列表', component: BlogList, exact: true, catalogue: 'blog'},
   {path: '/blog/websocket', text: 'websocket使用', component: WebsocketUsecase, exact: true},
   {path: '/blog/record', text: '采坑记录', component: Record, exact: true},
+  {path: '/blog/screenshot', text: '截屏实现', component: Screenshot, exact: true},
 
   {path: '/demo', text: '演示列表', component: DemoList, exact: true, catalogue: 'demo'},
   {path: '/demo/game2048', text: '2048小游戏', component: Game2048, exact: true},
@@ -34,6 +36,14 @@ export const routesList = [
     brief: '在react-native项目中发现的坑及解决办法。持续记录...',
     date: '8 Oct, 2019',
     imageSrc: ILLUSTRATION_RECORD
+  },
+  {
+    catalogue: 'blog',
+    title: 'html2canvas生成截图并上传',
+    path: '/blog/screenshot',
+    brief: '在项目中要自动生成截图并上传作为模块的封面，记录一下实现时遇见的问题。',
+    date: '22 Oct, 2019',
+    imageSrc: ILLUSTRATION_SCREEN_SHOT
   },
   {
     catalogue: 'demo',
