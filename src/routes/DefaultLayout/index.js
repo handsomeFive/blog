@@ -3,7 +3,7 @@ import { Switch, Route, Redirect } from 'react-router'
 import { Link } from 'react-router-dom'
 import { Layout, Menu, Avatar } from 'antd'
 import { WHITE } from '../../constants/color'
-import { routeConfig } from '../../../src/constants/routes'
+import { BASIC_ROUTE, routeConfig } from '../../../src/constants/routes'
 import { CustomIcon } from '../../component/CustomIcon/index'
 import { V_LAYOUT_AREA_GAP, V_LAYOUT_HEADER_HEIGHT, V_LAYOUT_TYPE_AREA } from '../../constants/global'
 
@@ -43,8 +43,8 @@ class App extends Component {
     return <Header style={headerStyle}>
       <div style={contentStyle}>
         <Avatar size={32} icon='user'/>
-        <Link style={labelStyle} to={'/blog'}>博客</Link>
-        <Link style={labelStyle} to={'/demo'}>Demo</Link>
+        <Link style={labelStyle} to={`${BASIC_ROUTE}/blog`}>博客</Link>
+        <Link style={labelStyle} to={`${BASIC_ROUTE}/demo`}>Demo</Link>
       </div>
     </Header>
   }
