@@ -4,7 +4,7 @@ import Game2048 from '../routes/pages/Demo/Game2048'
 import Record from '../routes/pages/Blog/Record'
 import DemoList from '../routes/pages/Demo/DemoList'
 import BlogList from '../routes/pages/Blog/BlogList'
-import Snake from '../routes/pages/Demo/GluttonousSnale'
+import Snake from '../routes/pages/Demo/GluttonousSnake'
 import Screenshot from '../routes/pages/Blog/Screenshot'
 import { ILLUSTRATION_WEBSOCKET, ILLUSTRATION_RECORD, ILLUSTRATION_2048, ILLUSTRATION_SCREEN_SHOT } from '../assets/img'
 
